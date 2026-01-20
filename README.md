@@ -1,8 +1,10 @@
-# The Method - Special Design (Worq)
+# Worq
 
 ## Project Overview
 
-**The Method - Special Design** is a high-fidelity, cinematic landing page concept developed for **Worq**. It serves as a sophisticated digital entry point, prioritizing bold typography, fluid motion, and immersive visual storytelling. [See live demo here.](https://lefajmofokeng.github.io/Word
+**The Method - Special Design** is a high-fidelity, cinematic landing page concept developed for **Worq**. It serves as a sophisticated digital entry point, prioritizing bold typography, fluid motion, and immersive visual storytelling. [See live demo here.](https://lefajmofokeng.github.io/Worq)
+
+<img width="1920" height="877" alt="worq" src="https://github.com/user-attachments/assets/12e53e59-7989-4975-a5d2-f404b2ec3684" />
 
 ---
 

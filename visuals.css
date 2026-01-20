@@ -1,0 +1,264 @@
+/* --- 1. Font Face Placeholder --- */
+  @font-face {
+    font-family: 'Cofigra';
+    src: url('fonts/Cofigra.ttf') format('woff2'),
+         url('fonts/Cofigra-Bold.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* --- 2. Shared Variables & Reset --- */
+  :root {
+    --msd-text-color: #ffffff;
+    --msd-bg-color: #111111;
+    --msd-accent-color: #333333;
+    --msd-padding: 40px;
+    --msd-menu-bg: #0a0a0a;
+    --msd-transition: 0.6s cubic-bezier(0.83, 0, 0.17, 1); /* Cinematic easing */
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: var(--msd-bg-color);
+    font-family: 'Cofigra', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+
+  /* --- 3. Main Container & Video --- */
+  .msd-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .msd-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(0.5) contrast(1.1);
+  }
+
+  .msd-texture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .msd-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--msd-padding);
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* --- 4. Typography --- */
+  .msd-title {
+    font-size: clamp(5rem, 18vw, 16rem);
+    font-weight: 900;
+    line-height: 0.85;
+    color: var(--msd-text-color);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    /* Simple entrance animation */
+    animation: msdFadeInUp 1.2s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .msd-subtitle {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--msd-text-color);
+    margin-top: 20px;
+    margin-left: 5px;
+    animation: msdFadeInUp 1.2s ease-out 0.2s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes msdFadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- 5. Navigation Elements --- */
+  /* Hamburger Trigger */
+  .msd-menu-trigger {
+    position: absolute;
+    top: var(--msd-padding);
+    right: var(--msd-padding);
+    z-index: 50; /* Above content, below menu overlay */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    color: var(--msd-text-color);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  .msd-menu-trigger:hover {
+    opacity: 1;
+  }
+
+  /* Bottom Nav */
+  .msd-bottom-nav {
+    position: absolute;
+    bottom: var(--msd-padding);
+    right: var(--msd-padding);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: var(--msd-text-color);
+    font-family: 'Cofigra', sans-serif;
+    letter-spacing: 0.04em;
+    z-index: 10;
+  }
+
+  /* Responsive Bottom Nav for Mobile */
+  @media (max-width: 768px) {
+    .msd-bottom-nav {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 15px;
+    }
+  }
+
+  .msd-nav-link {
+    text-decoration: none;
+    color: var(--msd-text-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  .msd-nav-link:hover {
+    opacity: 1;
+  }
+
+  .msd-icon {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+  .msd-icon-arrow { transform: rotate(-45deg); }
+  .msd-bottom-icons { display: flex; gap: 15px; margin-left: 20px; opacity: 0.5; }
+
+  /* --- 6. SLIDING MENU OVERLAY --- */
+  .msd-overlay-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw; /* Default to full width on mobile */
+    height: 100vh;
+    background-color: var(--msd-menu-bg);
+    z-index: 100; /* Highest z-index */
+    transform: translateX(100%); /* Hidden by default */
+    transition: transform var(--msd-transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Desktop/Tablet: Drawer style */
+  @media (min-width: 768px) {
+    .msd-overlay-menu {
+      width: 40vw; /* Takes up 40% of width */
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+  }
+
+  /* Active Class to Open Menu */
+  .msd-overlay-menu.msd-is-open {
+    transform: translateX(0);
+  }
+
+  /* Close Button inside Menu */
+  .msd-close-btn {
+    position: absolute;
+    top: var(--msd-padding);
+    right: var(--msd-padding);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--msd-text-color);
+    padding: 10px;
+    transition: transform 0.3s ease;
+  }
+  .msd-close-btn:hover {
+    transform: rotate(90deg);
+  }
+  .msd-close-icon {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+  }
+
+  /* Menu Links List */
+  .msd-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center on mobile */
+  }
+  @media (min-width: 768px) {
+    .msd-menu-list { text-align: left; } /* Align left on desktop drawer */
+  }
+
+  .msd-menu-item {
+    margin: 20px 0;
+    overflow: hidden; /* For reveal animation */
+  }
+
+  .msd-menu-anchor {
+    display: block;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--msd-text-color);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Hidden initially for animation sequence */
+    transform: translateY(30px);
+  }
+
+  .msd-menu-anchor:hover {
+    color: #888; /* Subtle grey on hover */
+    transform: translateX(10px);
+  }
+
+  /* Animation Staggering when Menu Opens */
+  .msd-is-open .msd-menu-anchor {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s ease;
+  }
+  /* Delay for each item */
+  .msd-is-open .msd-menu-item:nth-child(1) .msd-menu-anchor { transition-delay: 0.1s; }
+  .msd-is-open .msd-menu-item:nth-child(2) .msd-menu-anchor { transition-delay: 0.2s; }
+  .msd-is-open .msd-menu-item:nth-child(3) .msd-menu-anchor { transition-delay: 0.3s; }
+  .msd-is-open .msd-menu-item:nth-child(4) .msd-menu-anchor { transition-delay: 0.4s; }

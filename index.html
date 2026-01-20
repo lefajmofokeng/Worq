@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Method - Special Design</title>
+<link rel="stylesheet" href="visuals.css">
+</head>
+<body>
+
+<div class="msd-container">
+
+  <video class="msd-video-bg" autoplay muted loop playsinline poster="https://via.placeholder.com/1920x1080/111/fff?text=Video+Placeholder">
+    <source src="https://www.pexels.com/download/video/5019032/" type="video/mp4">
+  </video>
+
+  <div class="msd-texture-overlay"></div>
+
+  <div class="msd-content">
+    
+    <button class="msd-menu-trigger" id="msdMenuTrigger" aria-label="Open Menu">
+      <svg class="msd-icon" viewBox="0 0 24 24" style="width: 32px; height: 32px;">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+    </button>
+
+    <h1 class="msd-title">
+      The<br>Method
+    </h1>
+    <div class="msd-subtitle">
+      The Worq.
+    </div>
+
+    <div class="msd-bottom-nav">
+      <a href="#" class="msd-nav-link">
+        book a session
+        <svg class="msd-icon msd-icon-arrow" viewBox="0 0 24 24"><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"/></svg>
+      </a>
+      <a href="#" class="msd-nav-link">
+        the orbit
+        <svg class="msd-icon msd-icon-arrow" viewBox="0 0 24 24"><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"/></svg>
+      </a>
+      <div class="msd-bottom-icons">
+        <svg class="msd-icon" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="msd-overlay-menu" id="msdOverlayMenu">
+  <button class="msd-close-btn" id="msdCloseBtn" aria-label="Close Menu">
+    <svg class="msd-close-icon" viewBox="0 0 24 24">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+  </button>
+
+  <ul class="msd-menu-list">
+    <li class="msd-menu-item"><a href="#" class="msd-menu-anchor">Home</a></li>
+    <li class="msd-menu-item"><a href="#" class="msd-menu-anchor">Sessions</a></li>
+    <li class="msd-menu-item"><a href="#" class="msd-menu-anchor">About The Worq</a></li>
+    <li class="msd-menu-item"><a href="#" class="msd-menu-anchor">Contact</a></li>
+  </ul>
+</div>
+
+<script src="functions.js"></script>
+
+</body>
+</html> 
